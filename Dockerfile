@@ -9,7 +9,7 @@ RUN cd /path/to/venv
 RUN python3 -m venv /path/to/venv
 
 RUN mkdir code/
-
+RUN git -C code/ 
 RUN source bin/activate
 
-RUN pip3 install deps.txt
+RUN pip3 install -r dependencies.txt
