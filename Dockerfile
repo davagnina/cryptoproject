@@ -1,15 +1,23 @@
-FROM python:slim-buster
+FROM tensorflow/tensorflow:2.4.1
+
+# add mariadb repository
+RUN apt install -y software-properties-common
+RUN apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+RUN add-apt-repository -y 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.5/ubuntu bionic main'
 
 RUN apt-get update
-RUN apt-get install -y python3-pip python3-venv git
 
-RUN mkdir /cryptoproject
-RUN mkdir /cryptoproject/code
+# install packages needed
+RUN apt install -y libmariadb3 libmariadb-dev
+RUN apt install -y python3-pip
+RUN apt install -y git
 
-RUN git -C /cryptoproject/code https://github.com/davagnina/cryptoproject.git
+# create directories for the code
+RUN mkdir /cp
+RUN cd /cp
+RUN git clone https://github.com/davagnina/cp.git
+WORKDIR /cp
 
-RUN python3 -m venv /cryptoproject
-
-RUN source /cryptoproject/bin/activate
-
-RUN pip3 install -r code/dependencies.txt
+# upgrade and install python modules
+RUN pip3 install --upgrade pip
+RUN pip3 install -r dependencies.txt
