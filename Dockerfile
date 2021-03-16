@@ -1,7 +1,7 @@
 FROM python:slim-buster
 
 RUN apt-get update
-RUN apt-get install python3-pip python3-venv git
+RUN apt-get install -y python3-pip python3-venv git
 
 RUN mkdir /cryptoproject
 RUN mkdir /cryptoproject/code
