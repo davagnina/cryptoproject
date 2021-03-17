@@ -23,7 +23,6 @@ RUN cd /app
 
 # clone GitHub
 RUN git clone https://github.com/davagnina/cp.git
-WORKDIR /app
 
 # upgrade and install python modules
 RUN pip3 install --upgrade pip
