@@ -8,13 +8,18 @@ RUN add-apt-repository -y 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirrors
 RUN apt-get update
 
 # install packages needed
-RUN apt install -y libmariadb3 libmariadb-dev
-RUN apt install -y python3-pip python3-dev
-RUN apt-get install -y git kernel-package
+RUN apt-get install -y --quiet libmariadb3 libmariadb-dev
+RUN apt-get install -y --quiet python3-pip python3-dev
+RUN apt-get install -y --quiet git cifs-utils
 
 # create directories for the code
 RUN mkdir /app
 RUN cd /app
+
+# map network path to local folder?
+
+
+# clone GitHub
 RUN git clone https://github.com/davagnina/cp.git
 WORKDIR /app
 
