@@ -20,4 +20,4 @@ WORKDIR /cp
 
 # upgrade and install python modules
 RUN pip3 install --upgrade pip
-RUN pip3 install -r dependencies.txt
+RUN pip3 install -r deps.txt
